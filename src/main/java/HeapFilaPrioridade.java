@@ -5,7 +5,7 @@ public class HeapFilaPrioridade implements FilaPrioridade {
 	public HeapFilaPrioridade(int capacidade) {
 		this.heap = new Heap(capacidade);
 	}
-
+ 
 	// adicionar o pair no heap
 	public void add(String elemento, int prioridade) {}
 

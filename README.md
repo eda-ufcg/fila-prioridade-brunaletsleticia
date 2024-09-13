@@ -1,8 +1,8 @@
 # Identificação
 
-* Nome: 
-* Email (@ccc): 
-* Matrícula: 
+* Nome: Bruna Letícia dos Anjos Medeiros
+* Email (@ccc): bruna.leticia.anjos.medeiros@ccc.ufcg.edu.br
+* Matrícula: 123110747
 
 # Roteiro: Fila de Prioridade
 
@@ -24,7 +24,7 @@
 
 ## A tarefa. 
 
-Uma fila de prioridade é aquela em que a política de acesso é dada por um valor inteiro, a prioridade. Nós vimos em sala de aula 3 maneiras de implementar essa estratégia: i) adicionando no final (O(1)) e buscando o de maior prioridade O(n); ii) inserindo ordenado (O(1)) e retirando do início
+Uma fila de prioridade é aquela em que a política de acesso é dada por um valor inteiro, a prioridade. Nós vimos em sala de aula 3 maneiras de implementar essa estratégia: i) adicionando no final (O(1)) e buscando o de maior prioridade O(n); ii) inserindo ordenado (O(n)) e retirando do início
 da fila (O(1)) e iii) usando um heap (O(logn)).
 
 Você deve implementar essas 3 estratégias nesse roteiro. Veja a interface FilaPrioridade para entender a semântica dos métodos. 
