@@ -12,36 +12,49 @@ public class InsereOrdenadoFilaPrioridade implements FilaPrioridade {
 	
 	// criar um Pair e inserir de forma ordenada decrescente no array.
 	public void add(String elemento, int prioridade) {
-		if(prioridade >= fila.length){
-			throw new IndexOutOfBoundsException();
+		if(isEmpty()) {
+            this.head = 0;
 		}
-		Pair novo = new Pair(elemento, prioridade);
-		if(this.last == -1 && this.head == -1){
-			this.fila[0] = novo;
-		} 
-		else{
-			for(int j = 1; j <= this.last -1; j++){
-				if(novo.getPrioridade() >= fila[j].getPrioridade()){
-					this.fila[j-1] = novo;
+		
+        this.last = (this.last + 1) % this.fila.length;
+        this.fila[last] = new Pair(elemento, prioridade);
+		
+		for (int c = last; c != this.head ; c = (c - 1 + this.fila.length) % this.fila.length) {
+			if(this.fila[c].getPrioridade() > this.fila[c-1].getPrioridade()) {
+				Pair aux = this.fila[c];
+				this.fila[c] = this.fila[c-1];
+				this.fila[c-1] = aux;
+				/*
+				 * c não tiver uma prioridade maior que o elemento anterior 
+				 * (ou seja, a fila já está em ordem correta até esse ponto), 
+				 * o laço é interrompido com o comando break. 
+				 * Não há necessidade de continuar movendo o elemento, 
+				 * pois já está na posição correta.
+				 */
+			} else {
+				break;
 			}
 		}
 	}
-		this.head +=1;
-		this.last +=1;
-
+	private boolean isEmpty() {
+		return this.last == -1 && this.head == -1;
 	}
-/*
- * preciso comparar com cada um do array pra ver quem tem a maior prioridade, do comeco ao fim, achar um local em que o proximo dele é menor que ele, 
- * e colocar ele na posicao anterior a esse numero 
- */
 
 	// remover e retornar o primeiro elemento do array, que é o de maior prioridade. lembrar manipular head e tail
 	// para ser uma fila circular. assim a remoção fica O(1)
 	public String removeNext() {
-		Pair elem = fila[last];
-		this.last -=1;
-		return elem.getElemento();
-
+		String saida = this.fila[this.head].getElemento();
+		this.head = (this.head + 1) % this.fila.length;
+		return saida;
 	}
 
+public String mostra() {
+    String saida = "";
+    for (Pair c : fila) {
+        if (c != null) {
+            saida += c.getElemento() + " ";
+        }
+    }
+    return saida;
+}
 }
