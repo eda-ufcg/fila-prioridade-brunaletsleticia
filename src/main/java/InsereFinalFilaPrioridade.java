@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-/*
- * adicionando no final (O(1)) e buscando o de maior prioridade O(n)
- */
 public class InsereFinalFilaPrioridade implements FilaPrioridade {
 
 	private ArrayList<Pair> fila;
@@ -13,20 +10,44 @@ public class InsereFinalFilaPrioridade implements FilaPrioridade {
 	
 	// criar um Pair e adicionar no fim da fila
 	public void add(String elemento, int prioridade) {
-		Pair novo = new Pair(elemento, prioridade);
-		fila.add(novo);
+		Pair n = new Pair(elemento,prioridade);
+
+		this.fila.add(n);
 	}
 
 
 	// buscar pelo elemento de maior prioridade na fila.
+	public String removeNextt() {
+		Pair n = this.fila.get(0);
+		for(int i = 0; i < this.fila.size(); i++) {
+			if(n.prioridade < this.fila.get(i).prioridade)
+				n = this.fila.get(i); 
+		}
+		String out = n.elemento;
+		this.fila.remove(n);
+		return out;
+	}
+	
 	public String removeNext() {
-		Pair no = fila.get(0);
-		for(int j = 0; j <= fila.size(); j++){
-			if (fila.get(j).getPrioridade() >= no.getPrioridade()){
-				no = fila.get(j);
+		Pair elem = this.fila.get(0);
+		
+		for(int j = 0; j < this.fila.size(); j++) {
+			if(this.fila.get(j).getPrioridade() > elem.getPrioridade()) {
+				elem = this.fila.get(j);
 			}
 		}
-		return no.getElemento();
+		this.fila.remove(elem);
+		return elem.getElemento();
+		
+		
 	}
-
+	
+    public String mostra() {
+    	String saida = "";
+    	for(Pair c : fila) {
+    		saida += c.getElemento() + " ";
+    		
+    	}
+    	return saida;
+    }
 }
